@@ -3,17 +3,15 @@ class Trainer {
 		this.name = name;
 		this.pokemon_list = [];
 	}
-
+	// assigning the pokemon object to the trainer
 	assign_pokemon(assigned_pokemon) {
-		this.pokemon_list.push(assigned_pokemon); // assigning the Pokemon object to the trainer
+		this.pokemon_list.push(assigned_pokemon);
 		console.log(
 			`${assigned_pokemon.name} has been assigned to Trainer ${this.name}.`
 		);
 	}
-
+	// return this.pokemon_list[index];
 	show_pokemon() {
-		// return this.pokemon_list[index];
-
 		console.log(`${this.name}'s Pokemon:`);
 		this.pokemon_list.forEach((array, index) => {
 			console.log(
@@ -23,17 +21,15 @@ class Trainer {
 			);
 		}); // iterating all the pokemon stored in the array
 	}
-
 	summarize() {
 		console.log(`${this.name}'s Pokemon:`);
-
 		this.pokemon_list.forEach((array, index) => {
-			// Ensure HP is not negative
-			const adjustedHp = array.hp < 0 ? 0 : array.hp;
+			// ensure HP is not negative
+			const adjusted_hp = array.hp < 0 ? 0 : array.hp;
 			console.log(
 				`${index + 1}. ${array.name} (Type: ${array.type}, Level: ${
 					array.level
-				}, HP: ${adjustedHp})`
+				}, HP: ${adjusted_hp})`
 			);
 		});
 	}
@@ -53,26 +49,22 @@ class Pokemon {
 			this.damage = this.level * 4;
 		} else if (type === "Fire") {
 			this.damage = this.level * 5;
-		} else if (type === "Ultimate") {
-			this.damage = this.level * 7;
 		}
 	}
 
 	// Attack
 	attack(opponent) {
 		let chance = Math.random() * 100;
-
 		console.log(`${this.name} attacks ${opponent.name}`);
 		console.log(`${this.name} level up ${this.damage}.`);
 
 		if (chance < 10) {
 			console.log(`${this.name} landed a critical hit!`);
-			this.damage *= 3; // Critical hit triple damage
+			this.damage *= 3; // critical hit triple damage
 		} else if (chance < 30) {
 			console.log(`${this.name} landed a double damage hit!`);
-			this.damage *= 2; // Double damage
+			this.damage *= 2; // double damage
 		}
-		//Pokemon level up! 10
 	}
 
 	// Display what damage is received
@@ -105,20 +97,14 @@ class Pokemon {
 			healer = this.level * 3;
 			this.hp += healer;
 			console.log(
-				`${this.name} received a ultra heal! Heals ${healer} HP. Thus, having ${this.hp} HP`
+				`${this.name} received a ultra heal! Heals ${healer} HP. Thus, obtaining ${this.hp} HP`
 			);
 		} else if (chance < 30) {
 			healer = this.level * 2;
 			this.hp += healer;
 			console.log(
-				`${this.name} heals ${healer} HP. Thus, having ${this.hp} HP`
+				`${this.name} heals ${healer} HP. Thus, obtaining ${this.hp} HP`
 			);
-			// } else {
-			// 	healer = this.level * 2;
-			// 	this.hp += healer;
-			// 	console.log(
-			// 		`${this.name} heals ${healer} HP. Thus, having ${this.hp} HP`
-			// 	);
 		}
 	}
 
@@ -137,13 +123,11 @@ class ElectricPokemon extends Pokemon {
 	constructor(name, level, hp) {
 		super(name, "Electric", level, hp); // calling the base class constructor
 	}
-
 	// overriding received_damage
 	attack(opponent) {
 		console.log(`${this.name} uses Thunderbolt on ${opponent.name}!`);
 		super.attack(opponent);
 	}
-
 	// overriding received_damage
 	received_damage(opponent) {
 		super.received_damage(opponent); // call received_damage from the parent class
@@ -154,12 +138,10 @@ class GrassPokemon extends Pokemon {
 	constructor(name, level, hp) {
 		super(name, "Grass", level, hp);
 	}
-
 	attack(opponent) {
 		console.log(`${this.name} uses Leaf Storm on ${opponent.name}!`);
 		super.attack(opponent);
 	}
-
 	received_damage(opponent) {
 		super.received_damage(opponent);
 	}
@@ -169,12 +151,10 @@ class WaterPokemon extends Pokemon {
 	constructor(name, level, hp) {
 		super(name, "Water", level, hp);
 	}
-
 	attack(opponent) {
 		console.log(`${this.name} uses Aqua Ring on ${opponent.name}!`);
 		super.attack(opponent);
 	}
-
 	received_damage(opponent) {
 		super.received_damage(opponent);
 	}
@@ -184,27 +164,10 @@ class FirePokemon extends Pokemon {
 	constructor(name, level, hp) {
 		super(name, "Fire", level, hp);
 	}
-
 	attack(opponent) {
 		console.log(`${this.name} uses Flamethrower on ${opponent.name}!`);
 		super.attack(opponent);
 	}
-
-	received_damage(opponent) {
-		super.received_damage(opponent);
-	}
-}
-
-class UltimatePokemon extends Pokemon {
-	constructor(name, level, hp) {
-		super(name, "Ultimate", level, hp);
-	}
-
-	attack(opponent) {
-		console.log(`${this.name} uses Pulverize on ${opponent.name}!`);
-		super.attack(opponent);
-	}
-
 	received_damage(opponent) {
 		super.received_damage(opponent);
 	}
@@ -224,17 +187,16 @@ const pokemon_array = [
 
 function shuffle_arrays(array) {
 	for (let i = array.length - 1; i > 0; i--) {
-		const j = Math.floor(Math.random() * (i + 1)); // Random index
-		[array[i], array[j]] = [array[j], array[i]]; // Swap elements
+		const j = Math.floor(Math.random() * (i + 1)); // random index
+		[array[i], array[j]] = [array[j], array[i]]; // swap elements
 	}
 }
 
 const names = [];
-
 shuffle_arrays(pokemon_array);
 names.push(...pokemon_array);
 
-//Trainer Declaration
+// trainer declaration
 const ash = new Trainer("Ash");
 const brock = new Trainer("Brock");
 const misty = new Trainer("Misty");
@@ -243,10 +205,10 @@ let pikachu = new ElectricPokemon("Pikachu", 1, 110);
 
 ash.assign_pokemon(pikachu);
 
-//Pokemon assigned to their trainers
+// pokemon assigned to their trainers
 for (let index = 0; index < names.length; index++) {
 	let pokemon;
-	// Use the shuffled 'names' array instead of pokemon_array
+	// use the shuffled 'names' array instead of pokemon_array
 	if (names[index] === "Bulbasaur") {
 		pokemon = new GrassPokemon(names[index], 1, 100);
 	} else if (names[index] === "Charmander") {
@@ -293,30 +255,30 @@ class Battle {
 			`The battle starts between Trainer ${this.trainer1.name} and Trainer ${this.trainer2.name}!`
 		);
 
-		let trainer1PokemonIndex = 0;
-		let trainer2PokemonIndex = 0;
+		let trainer1_pokemon_index = 0;
+		let trainer2_pokemon_index = 0;
 
-		// Battle Loop
+		// battle loop
 		while (
-			trainer1PokemonIndex < this.trainer1.pokemon_list.length &&
-			trainer2PokemonIndex < this.trainer2.pokemon_list.length
+			trainer1_pokemon_index < this.trainer1.pokemon_list.length &&
+			trainer2_pokemon_index < this.trainer2.pokemon_list.length
 		) {
-			const pokemon1 = this.trainer1.pokemon_list[trainer1PokemonIndex];
-			const pokemon2 = this.trainer2.pokemon_list[trainer2PokemonIndex];
+			const pokemon1 = this.trainer1.pokemon_list[trainer1_pokemon_index];
+			const pokemon2 = this.trainer2.pokemon_list[trainer2_pokemon_index];
 
-			// check if the pokemon has fainted (HP <= 0), if so, skip to next Pokémon
+			// check if the pokemon has fainted (HP <= 0), if so, skip to next pokemon
 			if (pokemon1.hp <= 0) {
 				console.log(
 					`Trainer ${this.trainer1.name}'s ${pokemon1.name} has fainted and cannot participate in this battle.`
 				);
-				trainer1PokemonIndex++;
+				trainer1_pokemon_index++;
 				continue;
 			}
 			if (pokemon2.hp <= 0) {
 				console.log(
 					`Trainer ${this.trainer2.name}'s ${pokemon2.name} has fainted and cannot participate in this battle.`
 				);
-				trainer2PokemonIndex++;
+				trainer2_pokemon_index++;
 				continue;
 			}
 
@@ -328,9 +290,9 @@ class Battle {
 				`Trainer ${this.trainer2.name} releases ${pokemon2.name}! HP: ${pokemon2.hp}`
 			);
 
-			let roundCounter = 1;
+			let round_counter = 1;
 			while (pokemon1.hp > 0 && pokemon2.hp > 0) {
-				console.log(`\n******** Battle Round ${roundCounter} ********\n`);
+				console.log(`\n******** Battle Round ${round_counter} ********\n`);
 
 				// pokemon 1 attacks pokemon 2
 				pokemon1.attack(pokemon2);
@@ -349,11 +311,11 @@ class Battle {
 				if (pokemon2.hp <= 0) {
 					console.log(`${pokemon2.name} has fainted!`);
 					console.log(`${pokemon1.name} wins this round!`);
-					trainer2PokemonIndex++; // move to next pokemon for trainer 1
+					trainer2_pokemon_index++; // move to next pokemon for trainer 1
 					break;
 				}
 
-				// Pokemon 2 attacks Pokemon 1
+				// pokemon 2 attacks pokemon 1
 				pokemon2.attack(pokemon1);
 				pokemon2.received_damage(pokemon1);
 				pokemon2.calculate_damage(pokemon1);
@@ -369,35 +331,23 @@ class Battle {
 				if (pokemon1.hp <= 0) {
 					console.log(`${pokemon1.name} has fainted!`);
 					console.log(`${pokemon2.name} wins this round!`);
-					trainer1PokemonIndex++; // move to next pokemon for trainer 1
+					trainer1_pokemon_index++; // move to next pokemon for trainer 1
 					break;
 				}
 
-				roundCounter++;
+				round_counter++;
 			}
 
-			// check if any trainer runs out of pokemon to continue the battle
-			if (trainer1PokemonIndex >= this.trainer1.pokemon_list.length) {
-				console.log(`Trainer ${this.trainer2.name} wins the battle!`);
-				break;
+			// check if the battle ended with one trainer's pokemon fainting
+			if (trainer1_pokemon_index >= this.trainer1.pokemon_list.length) {
+				console.log(`${this.trainer1.name} has been eliminated!`);
+				return this.trainer2; // trainer 2 wins
 			}
 
-			if (trainer2PokemonIndex >= this.trainer2.pokemon_list.length) {
-				console.log(`Trainer ${this.trainer1.name} wins the battle!`);
-				break;
+			if (trainer2_pokemon_index >= this.trainer2.pokemon_list.length) {
+				console.log(`${this.trainer2.name} has been eliminated!`);
+				return this.trainer1; // trainer 1 wins
 			}
-
-			trainer1PokemonIndex++;
-			trainer2PokemonIndex++;
-		}
-
-		// final winner check after all rounds
-		if (trainer1PokemonIndex >= this.trainer1.pokemon_list.length) {
-			console.log(`Trainer ${this.trainer2.name} wins the battle!`);
-		} else if (trainer2PokemonIndex >= this.trainer2.pokemon_list.length) {
-			console.log(`Trainer ${this.trainer1.name} wins the battle!`);
-		} else {
-			console.log("The battle ended without a winner.");
 		}
 
 		console.log("\n*************************************");
@@ -406,64 +356,31 @@ class Battle {
 
 const trainers = [ash, brock, misty];
 
-// Shuffle trainers array
 function shuffle_array(array) {
 	for (let i = array.length - 1; i > 0; i--) {
 		const j = Math.floor(Math.random() * (i + 1));
-		[array[i], array[j]] = [array[j], array[i]]; // Swap elements
+		[array[i], array[j]] = [array[j], array[i]]; // swap elements
 	}
 }
 
-// Elimination tournament logic
-function start_elimination_tournament(trainers) {
-	// Shuffle the array of trainers at the start
+while (trainers.length > 1) {
+	// randomize the trainers
 	shuffle_array(trainers);
 
-	let winner = trainers[0]; // The first trainer starts as the winner
-	console.log(
-		`The tournament begins! Trainer ${winner.name} starts the battle.`
-	);
+	// select the first two trainers
+	const trainer1 = trainers[0];
+	const trainer2 = trainers[1];
 
-	// Continue battling until only one trainer remains
-	while (trainers.length > 1) {
-		// Randomly pick an opponent from the remaining trainers
-		const remainingTrainers = trainers.filter((trainer) => trainer !== winner);
-		const opponent =
-			remainingTrainers[Math.floor(Math.random() * remainingTrainers.length)];
+	// start the battle
+	const battle = new Battle(trainer1, trainer2);
+	const winner = battle.start_battle();
 
-		// Start the battle between the winner and the selected opponent
-		console.log(
-			`\nBattle between Trainer ${winner.name} and Trainer ${opponent.name}!`
-		);
-		const battle = new Battle(winner, opponent);
-		battle.start_battle();
-
-		// Determine who the winner is after the battle
-		if (battle.trainer1.pokemon_list.length > 0) {
-			winner = battle.trainer1; // Trainer 1 won
-			console.log(
-				`${winner.name} wins this battle and proceeds to the next round.`
-			);
-		} else {
-			winner = battle.trainer2; // Trainer 2 won
-			console.log(
-				`${winner.name} wins this battle and proceeds to the next round.`
-			);
-		}
-
-		// Remove the loser from the tournament
-		trainers = trainers.filter((trainer) => trainer !== winner);
-
-		if (trainers.length > 1) {
-			break;
-		}
-	}
-
-	console.log(`\nThe winner of the tournament is Trainer ${winner.name}!`);
+	// eliminate the loser and continue with the winner
+	trainers.shift();
+	trainers[0] = winner;
 }
 
-// Start the tournament
-start_elimination_tournament(trainers);
+console.log(`\nThe final winner is ${trainers[0].name}!`);
 
 console.log(`********* END OF TOURNAMENT *********`);
 
