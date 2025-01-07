@@ -398,7 +398,9 @@ do {
 	} else if (input === "n" || input === "N") {
 		console.log("Okay.");
 		break;
+	} else if (input === null || input.trim() === "") {
+		location.reload();
 	} else {
-		console.log("Invalid input! Please try again!\n");
+		console.log("Invalid input! Please try again!");
 	}
 } while (input);
