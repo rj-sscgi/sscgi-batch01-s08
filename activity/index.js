@@ -41,14 +41,22 @@ class Pokemon {
 		this.type = type;
 		this.level = level;
 		this.hp = hp;
-		if (type === "Grass") {
-			this.damage = this.level * 2;
-		} else if (type === "Water") {
-			this.damage = this.level * 2.5;
-		} else if (type === "Electric") {
-			this.damage = this.level * 3;
-		} else if (type === "Fire") {
-			this.damage = this.level * 3.5;
+		switch (type) {
+			case "Grass":
+				this.damage = this.level * 2;
+				break;
+			case "Water":
+				this.damage = this.level * 2.5;
+				break;
+			case "Electric":
+				this.damage = this.level * 3;
+				break;
+			case "Fire":
+				this.damage = this.level * 3.5;
+				break;
+			default:
+				console.log("Unknown type");
+				break;
 		}
 	}
 
