@@ -129,9 +129,6 @@ class ElectricPokemon extends Pokemon {
 		super.attack(opponent);
 	}
 	// overriding received_damage
-	received_damage(opponent) {
-		super.received_damage(opponent); // call received_damage from the parent class
-	}
 }
 
 class GrassPokemon extends Pokemon {
@@ -141,9 +138,6 @@ class GrassPokemon extends Pokemon {
 	attack(opponent) {
 		console.log(`${this.name} uses Leaf Storm on ${opponent.name}!`);
 		super.attack(opponent);
-	}
-	received_damage(opponent) {
-		super.received_damage(opponent);
 	}
 }
 
@@ -155,9 +149,6 @@ class WaterPokemon extends Pokemon {
 		console.log(`${this.name} uses Aqua Ring on ${opponent.name}!`);
 		super.attack(opponent);
 	}
-	received_damage(opponent) {
-		super.received_damage(opponent);
-	}
 }
 
 class FirePokemon extends Pokemon {
@@ -167,9 +158,6 @@ class FirePokemon extends Pokemon {
 	attack(opponent) {
 		console.log(`${this.name} uses Flamethrower on ${opponent.name}!`);
 		super.attack(opponent);
-	}
-	received_damage(opponent) {
-		super.received_damage(opponent);
 	}
 }
 
