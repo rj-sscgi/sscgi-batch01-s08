@@ -97,14 +97,12 @@ class Pokemon {
 			healer = this.level * 3;
 			this.hp += healer;
 			console.log(
-				`${this.name} received an ultra heal! Heals ${healer} HP. Thus, obtaining ${this.hp} HP`
+				`${this.name} received an ultra heal! Heals ${healer} HP. Thus, HP: ${this.hp} HP`
 			);
 		} else if (chance < 30) {
 			healer = this.level * 2;
 			this.hp += healer;
-			console.log(
-				`${this.name} heals ${healer} HP. Thus, obtaining ${this.hp} HP`
-			);
+			console.log(`${this.name} heals ${healer} HP. Thus, HP: ${this.hp} HP`);
 		}
 	}
 
